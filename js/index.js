@@ -66,19 +66,18 @@ const NewsApp = {
                             });
                         });
                     },
-                    renderPaintings: function () {
+                    renderNews: function () {
                         const section = document.getElementById('content_section');
                         section.innerHTML = "";
                         this.paintings.forEach(function (item) {
                             const html = `<article>
-          <img src="${item.imageURL}" alt="" />
           <div class="article_content_wrapper">
             <div>
               <h3>${item.title}</h3>
-              <h4>${item.artist}</h4>
+              <h4>${item.article}</h4>
             </div>
             <div>
-              <div class="price">${item.price}</div>
+              <div class="likes">${item.likes}</div>
               <div class="date">${item.auctionDate}</div> 
             </div>
           </div>
@@ -86,17 +85,17 @@ const NewsApp = {
                             section.insertAdjacentHTML('beforeend', html);
                         });
                     },
-                    calculateTotalPrice: function () {
+                    calculateTotalLikes: function () {
                         // map
-                        const mappedPaintings = this.paintings.map((item) => {
-                            return item.price;
+                        const mappedNews = this.News.map((item) => {
+                            return item.likes;
                         });
 
-                        const totalPrice = mappedPaintings.reduce((acc, cur) => {
+                        const totalLikes = mappedNews.reduce((acc, cur) => {
                             return acc + cur;
                         });
 
-                        const roundedPrice = Math.round(totalPrice * 100) / 100;
+                        const roundedPrice = Math.round(totalLikes * 100) / 100;
 
                         const box = document.getElementById('total');
                         box.innerText = roundedPrice;
